@@ -32,11 +32,6 @@ stages {
     }
 
     stage('Deploy') {
-        agent {
-            docker {
-                image 'alpine'
-            }
-        }
         steps {
             echo 'Mock deployment was successful!'
         }
@@ -47,11 +42,13 @@ post {
     always {
         echo 'Pipeline finished.'
     }
+
     success {
-        echo 'Build and tests passed.'
+        echo 'Build, tests and deploy completed successfully.'
     }
+
     failure {
-        echo 'Build or tests failed.'
+        echo 'Pipeline failed.'
     }
 }
 
